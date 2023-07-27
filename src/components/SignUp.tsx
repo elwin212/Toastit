@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Icons } from './icons'
 import UserAuthForm from './UserAuthForm'
 
 
@@ -8,7 +7,9 @@ const SignUp = () => {
   return (
     <div className='container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px]'>
         <div className="flex flex-col space-y-2 text-center">
-            <Icons.logo className="mx-auto h-6 w-6"/>
+            <div className="flex justify-center items-center">
+                <img src="../../favicon-32x32.png" alt="My Icon" className="h-8 w-8 sm:h-6 sm:w-6" />
+            </div>
             <h1 className="text-2x font-semibold tracking-tight">Sign Up</h1>
             <p className="text-sm max-w-xs mx-auto">
                 By continuing, you are agree to our User Agreement and Private Policy.
@@ -21,7 +22,7 @@ const SignUp = () => {
                 <Link 
                     href="/sign-in" 
                     className="hover:text-zinc-800 text-sm underline underline-offset-4">
-                    Sign Up    
+                    Sign In    
                 </Link>
             </p>
         </div>   

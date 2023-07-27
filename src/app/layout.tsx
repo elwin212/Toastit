@@ -4,11 +4,12 @@ import { Inter } from 'next/font/google'
 import { Toaster } from '@/components/ui/Toaster'
 
 import '@/styles/globals.css'
+import Provider from '@/components/Provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Breadit',
+  title: 'Toastit',
   description: 'A Reddit clone built with Next.js and TypeScript.',
 }
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         inter.className
       )}>
       <body className='min-h-screen pt-12 bg-slate-50 antialiased'>
+        <Provider>
           {/* @ts-expect-error server component */}
           <Navbar />
 
@@ -35,7 +37,7 @@ export default function RootLayout({
           <div className='container max-w-7xl mx-auto h-full pt-12'>
             {children}
           </div>
-        
+          </Provider>
         <Toaster />
       </body>
     </html>

@@ -21,6 +21,11 @@ const UserAuthForm: FC<UserAuthFormProps> = ({className, ...props}) => {
         try{
             //throw new Error("google");
             await signIn("google");
+            toast({
+                title: "Success!",
+                description: "You have signed in",
+                variant: "default"
+            });
         }
         catch (error) {
             toast({

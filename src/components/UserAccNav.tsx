@@ -5,13 +5,15 @@ import { FC } from 'react'
 import UserAvatar from "./UserAvatar"
 import Link from "next/link"
 import { signOut } from "next-auth/react"
-
+import { useToast } from '@/hooks/use-toast'
 
 interface UserAccNavProps {
   user: Pick<User, "name" | "image" | "email">
 }
 
+
 const UserAccNav: FC<UserAccNavProps> = ({user}) => {
+  const { toast } = useToast();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -33,7 +35,7 @@ const UserAccNav: FC<UserAccNavProps> = ({user}) => {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem asChild>
-          <Link href="/">Profile</Link>
+          <Link href="/profile">Profile</Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild>
@@ -46,14 +48,20 @@ const UserAccNav: FC<UserAccNavProps> = ({user}) => {
 
           <DropdownMenuSeparator />
 
-          <DropdownMenuItem onSelect={(e) => {
-            e.preventDefault();
-            signOut({
-              callbackUrl: `${window.location.origin}/sign-in`,
-            })
-          }} 
-          className="cursor-pointer">
-            Sign out
+          <DropdownMenuItem             
+            onSelect={(e) => {
+              e.preventDefault();              
+              signOut({
+                callbackUrl: `${window.location.origin}/sign-in`,
+              })
+              toast({
+                title: "Success!",
+                description: "You have been signed out",
+                variant: "default"
+              });
+            }}
+            className="cursor-pointer">
+              Sign out
           </DropdownMenuItem>
 
       </DropdownMenuContent>
