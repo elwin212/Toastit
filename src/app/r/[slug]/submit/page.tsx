@@ -1,15 +1,16 @@
 /*  This handles submit post */
+import { Button } from '@/components/ui/Button'
 import { db } from '@/lib/db'
 import { notFound } from 'next/navigation'
-import { FC } from 'react'
+import { CustomEditor } from '@/components/CustomEditor';
 
-interface PageProps {
+interface pageProps {
     params: {
         slug: string
     }
 }
 
-const page = async ({params} : PageProps) => {
+const page = async ({params} : pageProps) => {
 
     const subreddit = await db.subreddit.findFirst({
         where: {
@@ -32,9 +33,18 @@ const page = async ({params} : PageProps) => {
                         in r/{params.slug}
                     </p>
                 </div>
-            </div>        
+            </div>  
+
+            <CustomEditor subredditId={subreddit.id}/>
+
+            { /* Form */ }
+            <div className="w-full flex justify-end">
+                <Button type="submit" className="w-full" form="subreddit-post-form">
+                    Post
+                </Button>
+            </div>
         </div>
     )
 }
 
-export default page
+export default page;
