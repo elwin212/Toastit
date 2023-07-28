@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  code-racer-db:
+  toast-it-db:
     image: postgres
     restart: always
     container_name: toast-it
@@ -9,8 +9,31 @@ services:
     environment:
       POSTGRES_PASSWORD: example
       PGDATA: /data/postgres
+    networks:
+      - mynetwork
     volumes:
       - postgres:/data/postgres
 
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5051:80"
+    networks:
+      - mynetwork
+    restart: unless-stopped
+
+networks:
+  mynetwork:
+    driver: bridge
+
 volumes:
   postgres:
+  pgadmin:
+
