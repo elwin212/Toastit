@@ -12,7 +12,9 @@ import { toast } from '@/hooks/use-toast';
 import { uploadFiles } from '@/lib/uploadthing';
 import { PostCreationRequest, PostValidator } from '@/lib/validators/post';
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
+import axios from 'axios';  
+
+import '@/styles/editor.css';
 
 type FormData = z.infer<typeof PostValidator>;
 
@@ -70,13 +72,7 @@ export const CustomEditor: React.FC<CustomEditorProps> = ({ subredditId }) => {
           });
         },
       });
-    
-    useEffect(() =>{
-        if(typeof window !== undefined) {
-            setIsMounted(true);
-        }
-    }, []);
-
+        
     const initEditor = useCallback(async () => {
         const EditorJS = (await import('@editorjs/editorjs')).default;
         const Header = (await import('@editorjs/header')).default;
@@ -118,7 +114,7 @@ export const CustomEditor: React.FC<CustomEditorProps> = ({ subredditId }) => {
                                         url: res.fileUrl,
                                     },
                                 };
-                            }
+                            },
                         },
                     },
                 },
@@ -132,13 +128,13 @@ export const CustomEditor: React.FC<CustomEditorProps> = ({ subredditId }) => {
         }
     }, []);
 
-
+    //handle editor errors
     useEffect(() => {
         if (Object.keys(errors).length) {
           for (const [_key, value] of Object.entries(errors)) {
             value
             toast({
-              title: 'Something went wrong.',
+              title: 'Something went wrong...',
               description: (value as { message: string }).message,
               variant: 'destructive',
             })
@@ -146,22 +142,28 @@ export const CustomEditor: React.FC<CustomEditorProps> = ({ subredditId }) => {
         }
       }, [errors]);
 
+      useEffect(() => {
+        if (typeof window !== 'undefined') {
+          setIsMounted(true);
+        }
+      }, []);  
+
     useEffect(() => {
         const init = async () => {
-          await initEditor()
+          await initEditor();
     
           setTimeout(() => {
             _titleRef?.current?.focus()
-          }, 0)
-        }
+          }, 0);
+        };
     
         if (isMounted) {
           init()
     
           return () => {
-            ref.current?.destroy()
-            ref.current = undefined
-          }
+            ref.current?.destroy();
+            ref.current = undefined;
+          };
         }
       }, [isMounted, initEditor]);
 
