@@ -27,8 +27,7 @@ const style = {
 };
 
 const EditorOutput: FC<EditorOutputProps> = ({ content }) => {
-  return (
-    
+  return (    
     <Output
       style={style}
       className='text-sm'
