@@ -1,14 +1,15 @@
-import { getAuthSession } from '@/lib/auth'
-import { db } from '@/lib/db'
-import { z } from 'zod'
+import { getAuthSession } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { z } from 'zod';
 
 export async function GET(req: Request) {
-  const url = new URL(req.url)
+  const url = new URL(req.url);
 
-  const session = await getAuthSession()
+  const session = await getAuthSession();
 
-  let followedCommunitiesIds: string[] = []
+  let followedCommunitiesIds: string[] = [];
 
+  //if logged in
   if (session) {
     const followedCommunities = await db.subscription.findMany({
       where: {
@@ -19,7 +20,7 @@ export async function GET(req: Request) {
       },
     })
 
-    followedCommunitiesIds = followedCommunities.map((sub) => sub.subreddit.id)
+    followedCommunitiesIds = followedCommunities.map((sub) => sub.subreddit.id);
   }
 
   try {
@@ -33,9 +34,9 @@ export async function GET(req: Request) {
         subredditName: url.searchParams.get('subredditName'),
         limit: url.searchParams.get('limit'),
         page: url.searchParams.get('page'),
-      })
+      });
 
-    let whereClause = {}
+    let whereClause = {};
 
     if (subredditName) {
       whereClause = {
@@ -66,10 +67,11 @@ export async function GET(req: Request) {
         comments: true,
       },
       where: whereClause,
-    })
+    });
 
     return new Response(JSON.stringify(posts));
+
   } catch (error) {
     return new Response('Could not fetch posts', { status: 500 });
   }
-}
+};
