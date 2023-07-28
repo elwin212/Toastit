@@ -16,7 +16,7 @@ interface PostFeedProps {
 }
 
 const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
-  const lastPostRef = useRef<HTMLElement>(null)
+  const lastPostRef = useRef<HTMLElement>(null)  //DOM node element
   const { ref, entry } = useIntersection({
     root: lastPostRef.current,
     threshold: 1,
@@ -28,27 +28,27 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
     async ({ pageParam = 1 }) => {
       const query =
         `/api/posts?limit=${INFINITE_SCROLLING_PAGINATION_RESULT}&page=${pageParam}` +
-        (!!subredditName ? `&subredditName=${subredditName}` : '')
+        (!!subredditName ? `&subredditName=${subredditName}` : '');
 
-      const { data } = await axios.get(query)
-      return data as ExtendedPost[]
+      const { data } = await axios.get(query);
+      return data as ExtendedPost[];
     },
 
     {
-      getNextPageParam: (_, pages) => {
-        return pages.length + 1
+      getNextPageParam: (_, pages) => {  //handle next page
+        return pages.length + 1;
       },
       initialData: { pages: [initialPosts], pageParams: [1] },
     }
-  )
+  );
 
   useEffect(() => {
     if (entry?.isIntersecting) {
-      fetchNextPage() // Load more posts when the last post comes into view
+      fetchNextPage(); // Load more posts when the last post comes into view
     }
-  }, [entry, fetchNextPage])
+  }, [entry, fetchNextPage]);
 
-  const posts = data?.pages.flatMap((page) => page) ?? initialPosts
+  const posts = data?.pages.flatMap((page) => page) ?? initialPosts;  // ?? -> if the condition is null or undefined then run initialPosts
 
   return (
     <ul className='flex flex-col col-span-2 space-y-6'>
@@ -63,7 +63,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
           (vote) => vote.userId === session?.user.id
         )
 
-        if (index === posts.length - 1) {
+        if (index === posts.length - 1) {  //reach the last post in the page
           // Add a ref to the last post in the list
           return (
             <li key={post.id} ref={ref}>
@@ -96,7 +96,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
         </li>
       )}
     </ul>
-  )
-}
+  );
+};
 
 export default PostFeed;

@@ -2,6 +2,7 @@ import Link from "next/link"
 import { buttonVariants } from "./ui/Button"
 import { getAuthSession } from '@/lib/auth'
 import UserAccNav from "./UserAccNav"
+import SearchBar from "./SearchBar"
 
 const Navbar = async () => {
     const session = await getAuthSession();
@@ -13,7 +14,7 @@ const Navbar = async () => {
                 <p className="hidden text-zinc-700 text-sm font-medium md:block">Toastit</p>
             </Link>
             {/* serach bar */}
-
+            <SearchBar />
             
             {session?.user ? (
                 <UserAccNav user={session.user}/>                
