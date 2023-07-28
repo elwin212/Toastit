@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Toastit',
-  description: 'A Reddit clone built with Next.js and TypeScript.',
+  description: 'Simple website built with Next.js and Typescript',
 }
 
 export default function RootLayout({
