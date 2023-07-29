@@ -7,9 +7,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import TextAreaAutoSize from 'react-textarea-autosize';
 import { z } from 'zod';
-
 import { toast } from '@/hooks/use-toast';
-import { uploadFiles } from '@/lib/uploadthing';
+import  { uploadFiles } from '@/lib/uploadthing';
 import { PostCreationRequest, PostValidator } from '@/lib/validators/post';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';  
@@ -72,6 +71,8 @@ export const CustomEditor: React.FC<CustomEditorProps> = ({ subredditId }) => {
           });
         },
       });
+
+      
         
     const initEditor = useCallback(async () => {
         const EditorJS = (await import('@editorjs/editorjs')).default;
@@ -104,9 +105,12 @@ export const CustomEditor: React.FC<CustomEditorProps> = ({ subredditId }) => {
                 image: {
                     class: ImageTool,
                     config: {
-                        uploader: {  //using uploadthing.com for storage, if app scale quickly, use AWS S3 instead.
-                            async upLoadByFile(file: File) {
-                                const [res] = await uploadFiles([file], "imageUploader");
+                        uploader: {  //using uploadthing.com for storage, if app scale quickly, use AWS S3 instead.                            
+                            async upLoadByFile(file: File) {                                 
+                                const [res] = await uploadFiles({                                                                    
+                                  endpoint: "imageUploader",
+                                  files: [file],
+                                });
 
                                 return {
                                     success: 1,
