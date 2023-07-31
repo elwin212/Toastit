@@ -2,7 +2,7 @@
 
 ![Toastit Logo](/public/toastit192.png)
 
-Toastit is a modern web application that closely resembles Reddit, providing users with a platform to create, post, and upvote content across various interest groups. The application is built using cutting-edge technologies, including Next.js, Typescript, AWS RDS, Prisma, and Cache storage for optimal performance and user experience.
+Toastit is a modern web application that closely resembles Reddit, providing users with a platform to create, post, and upvote content across various interest groups.<br> The application is built using cutting-edge technologies, including Next.js, Typescript, AWS RDS, Prisma, and Cache storage for optimal performance and user experience.<br>
 **Please note:** Many features are still in progress and the application is actively being developed.
 
 ## Table of Contents
