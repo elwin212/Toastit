@@ -2,15 +2,15 @@
 
 ![Toastit Logo](/public/toastit192.png)
 
-Toastit is a web application that aims to replicate some of the core features of Reddit, allowing users to post, discuss, and vote on content.
-Many features still in progress.
+Toastit is a web application that aims to replicate some of the core features of Reddit, allowing users to post, discuss, and vote on content.<br>
+**Please note:** Many features are still in progress and the application is actively being developed.
 
 ## Table of Contents
 
 - [Features](#features)
 - [Demo](#demo)
 - [Technologies Used](#technologies-used)
-- [Installation](#installation)
+- [Dev Setup](#development-setup)
 
 ## Features
 
@@ -32,7 +32,11 @@ You can find a live demo of the application [here](https://toastit-dusky.vercel.
 - Database: AWS RDS with PostgreSQL
 - Cache: upstash
 
-## Installation
+## Development Setup
+
+To run the PostgreSQL database in Docker during development, you can use the provided Docker Compose file:
+
+Make sure you have Docker installed on your machine.
 
 1. Clone the repository:
 
@@ -70,3 +74,5 @@ npx prisma db push
 ```bash
 npm run dev
 ```
+
+Open your web browser and visit http://localhost:3000 to access the application.
