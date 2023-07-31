@@ -11,9 +11,6 @@ Many features still in progress.
 - [Demo](#demo)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -29,9 +26,11 @@ You can find a live demo of the application [here](https://toastit-dusky.vercel.
 
 ## Technologies Used
 
-- Frontend: React with Next.js, Tailwind CSS, TypeScript
+- Frontend: React with Next.js, Tailwind CSS
 - Backend: Node.js, Express.js
+- Language: TypeScript
 - Database: AWS RDS with PostgreSQL
+- Cache: upstash
 
 ## Installation
 
@@ -40,4 +39,34 @@ You can find a live demo of the application [here](https://toastit-dusky.vercel.
 ```bash
 git clone https://github.com/elwin212/toastit.git
 cd toastit
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Set up the docker:
+
+```bash
+docker compose up -d
+```
+
+4. Generate prisma:
+
+```bash
+npx prisma generate
+```
+
+5. Create database:
+
+```bash
+npx prisma db push
+```
+
+6. Run on local:
+
+```bash
+npm run dev
 ```
