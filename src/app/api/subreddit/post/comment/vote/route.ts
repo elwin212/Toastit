@@ -33,7 +33,7 @@ export async function PATCH(req: Request) {
               userId: session.user.id,
             },
           },
-        })
+        });
         return new Response('OK');
       } else {
         // if vote type is different, update the vote
@@ -47,7 +47,7 @@ export async function PATCH(req: Request) {
           data: {
             type: voteType,
           },
-        })
+        });
         return new Response('OK');
       }
     }
