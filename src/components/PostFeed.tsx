@@ -57,13 +57,16 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
           if (vote.type === 'UP') return acc + 1
           if (vote.type === 'DOWN') return acc - 1
           return acc
-        }, 0)
+        }, 0);
+
 
         const currentVote = post.votes.find(
           (vote) => vote.userId === session?.user.id
-        )
+        );
 
-        if (index === posts.length - 1) {  //reach the last post in the page
+        const isLastPost = index === posts.length - 1;
+
+        if (isLastPost) {  //reach the last post in the page
           // Add a ref to the last post in the list
           return (
             <li key={post.id} ref={ref}>
