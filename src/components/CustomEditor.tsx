@@ -99,7 +99,7 @@ export const CustomEditor: React.FC<CustomEditorProps> = ({ subredditId }) => {
                     linkTool: {
                         class: LinkTool,
                         config: {
-                            endpoint: "api/link",
+                            endpoint: "/api/link",
                         },
                     },
                 image: {
@@ -111,11 +111,10 @@ export const CustomEditor: React.FC<CustomEditorProps> = ({ subredditId }) => {
                                   endpoint: "imageUploader",
                                   files: [file],
                                 });
-
                                 return {
                                     success: 1,
                                     file: {
-                                        url: res.fileUrl,
+                                        url: res.fileUrl,                                        
                                     },
                                 };
                             },
