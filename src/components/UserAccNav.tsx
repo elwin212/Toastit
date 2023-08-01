@@ -39,7 +39,7 @@ const UserAccNav: FC<UserAccNavProps> = ({user}) => {
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild>
-          <Link href="/r/create">Create</Link>
+          <Link href="/r/create">Create Post</Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild>
