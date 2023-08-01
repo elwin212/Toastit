@@ -52,8 +52,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ postId } :DeleteButtonProps) => {
         }
       };
 
-    return <Button className='ml-auto bg-red-500' variant="destructive" size="sm" onClick={handleDelete}> Delete </Button>
-    //return <Button className='ml-auto bg-red-500' variant="destructive" size="sm" onClick={() => deletePost()}> Delete </Button>
+    return <Button className='ml-auto bg-red-500' variant="destructive" size="xs" onClick={handleDelete}> Delete </Button>    
 }
 
 export default DeleteButton;
