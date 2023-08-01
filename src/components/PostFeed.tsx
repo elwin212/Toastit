@@ -21,7 +21,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
     root: lastPostRef.current,
     threshold: 1,
   })
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     ['infinite-query'],
@@ -54,9 +54,9 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
     <ul className='flex flex-col col-span-2 space-y-6'>
       {posts.map((post, index) => {
         const votesAmt = post.votes.reduce((acc, vote) => {
-          if (vote.type === 'UP') return acc + 1
-          if (vote.type === 'DOWN') return acc - 1
-          return acc
+          if (vote.type === 'UP') return acc++;
+          if (vote.type === 'DOWN') return acc--;
+          return acc;
         }, 0);
 
 
@@ -89,7 +89,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
               votesAmt={votesAmt}
               currentVote={currentVote}
             />
-          )
+          );
         }
       })}
 
