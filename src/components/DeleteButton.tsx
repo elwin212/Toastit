@@ -1,13 +1,12 @@
 'use client'
-import { FC, startTransition } from 'react'
+import { FC, startTransition, useState } from 'react'
 import { Button } from './ui/Button'
 import { useRouter } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
 import axios, { AxiosError } from 'axios'
 import { toast } from '@/hooks/use-toast';
 import { DeletePostRequest } from '@/lib/validators/deletePost'
-import { Post, User, Vote } from '@prisma/client'
-import { db } from '@/lib/db'
+
 
 interface DeleteButtonProps {
   postId: string
@@ -15,7 +14,7 @@ interface DeleteButtonProps {
 
 const DeleteButton: FC<DeleteButtonProps> = ({ postId } :DeleteButtonProps) => {
     const router = useRouter();
-        
+    const [showConfirmation, setShowConfirmation] = useState(false);
     const {mutate: deletePost } = useMutation({
         mutationFn: async () => {
 
@@ -35,8 +34,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ postId } :DeleteButtonProps) => {
 
         onSuccess: () => {
             startTransition(() => {
-                router.back();
-                                
+                router.back();                                
             });
 
             toast({
@@ -45,7 +43,17 @@ const DeleteButton: FC<DeleteButtonProps> = ({ postId } :DeleteButtonProps) => {
             });
         },
     });
-  return <Button className='ml-auto bg-red-500' variant="destructive" size="sm" onClick={() => deletePost()}> Delete </Button>
+
+    const handleDelete = () => {
+        // Show a confirmation message using window.alert
+        const confirmDelete = window.confirm('Are you sure you want to delete the post?');
+        if (confirmDelete) {
+          deletePost();
+        }
+      };
+
+    return <Button className='ml-auto bg-red-500' variant="destructive" size="sm" onClick={handleDelete}> Delete </Button>
+    //return <Button className='ml-auto bg-red-500' variant="destructive" size="sm" onClick={() => deletePost()}> Delete </Button>
 }
 
 export default DeleteButton;
