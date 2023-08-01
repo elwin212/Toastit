@@ -22,7 +22,6 @@ const DeleteButton: FC<DeleteButtonProps> = ({ postId } :DeleteButtonProps) => {
             const payload: DeletePostRequest = {
                 postId
             };
-
             await axios.patch("/api/subreddit/post/delete", payload);            
         },
         onError: (err) => {  
@@ -37,6 +36,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ postId } :DeleteButtonProps) => {
         onSuccess: () => {
             startTransition(() => {
                 router.back();
+                                
             });
 
             toast({
