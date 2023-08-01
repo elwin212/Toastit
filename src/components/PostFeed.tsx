@@ -15,16 +15,23 @@ interface PostFeedProps {
   subredditName?: string
 }
 
+const loadIntersection = () => {
+  if (typeof window !== 'undefined') {
+    return require('@mantine/hooks').useIntersection;
+  }
+  return null;
+};
+
 const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
   const lastPostRef = useRef<HTMLElement>(null)  //DOM node element
   /*const { ref, entry } = useIntersection({
     root: lastPostRef.current,
     threshold: 1,
   });*/
-  
+
   const { data: session } = useSession();
-  const isClient = typeof window !== 'undefined';
-  const { ref, entry } = isClient
+  const useIntersection = loadIntersection();
+  const { ref, entry } = useIntersection
     ? useIntersection({
         root: lastPostRef.current,
         threshold: 1,
@@ -51,18 +58,13 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
     }
   );
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (entry?.isIntersecting) {
       fetchNextPage(); // Load more posts when the last post comes into view
     }
-  }, [entry, fetchNextPage]);*/
+  }, [entry, fetchNextPage]);
 
-  useEffect(() => {
-    if (isClient && entry?.isIntersecting) {
-      fetchNextPage();
-    }
-  }, [isClient, entry, fetchNextPage]);
-
+  
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;  // ?? -> if the condition is null or undefined then run initialPosts
 
   return (
