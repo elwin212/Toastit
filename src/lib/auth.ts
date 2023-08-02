@@ -16,7 +16,7 @@ export const authOptions: NextAuthOptions = {
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,            
             /*authorization: {
                 params: {
                     prompt: "consent",
@@ -67,9 +67,9 @@ export const authOptions: NextAuthOptions = {
                 picture: dbUser.image,
                 username: dbUser.username,
             }
-        },
-        redirect() {
-            return '/';
+        },        
+        redirect({ baseUrl }) {   //url http://localhost:3000/sign-in  baseUrl: http://localhost:3000
+            return baseUrl;
         }
     }, 
 }

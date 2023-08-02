@@ -51,13 +51,21 @@ const UserAccNav: FC<UserAccNavProps> = ({user}) => {
           <DropdownMenuItem             
             onSelect={(e) => {
               e.preventDefault();              
-              signOut({
-                callbackUrl: `${window.location.origin}/sign-in`,
+              signOut({ callbackUrl: `${window.location.origin}` })
+              .then(() => {
+                toast({
+                  title: 'Success!',
+                  description: 'You have been signed out',
+                  variant: 'default',
+                });
               })
-              toast({
-                title: "Success!",
-                description: "You have been signed out",
-                variant: "default"
+              .catch((error) => {
+                // Handle error if sign-out fails
+                toast({
+                  title: 'Something went wrong...',
+                  description: 'Try again later',
+                  variant: "destructive",
+                });
               });
             }}
             className="cursor-pointer">
