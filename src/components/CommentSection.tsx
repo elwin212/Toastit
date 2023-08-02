@@ -70,7 +70,7 @@ const CommentSection = async({postId}: CommentSectionProps) => {
                     currentVote={topLevelCommentVote}
                     votesCnt={topLevelCommentVotesAmt}
                     postId={postId}
-                  />
+                  />                  
                 </div>
 
                 {/* Render replies */}

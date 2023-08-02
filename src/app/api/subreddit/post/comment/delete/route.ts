@@ -1,13 +1,13 @@
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
-import { deletePostValidator } from '@/lib/validators/deletePost';
+import { deleteCommentValidator } from '@/lib/validators/deleteComment';
 import { z } from 'zod';
 
 export async function PATCH(req: Request) {
   try {
     const body = await req.json();
     
-    const { postId } = deletePostValidator.parse(body);
+    const { commentId } = deleteCommentValidator.parse(body);
     
     const session = await getAuthSession();
 
@@ -15,15 +15,15 @@ export async function PATCH(req: Request) {
       return new Response('Unauthorized', { status: 401 });
     }
     
-    await db.post.delete({
+    await db.comment.delete({
         where: {
-            id: postId,
+            id: commentId,
         },
-        include: {
-            comments: true,
+        include: {            
             votes: true,
             author: true,
-            subreddit: true,
+            post: true,
+            replies: true,            
         },
     });  
 
@@ -35,7 +35,7 @@ export async function PATCH(req: Request) {
     }
 
     return new Response(
-      'Could not post to delete post at this time. Please try later',
+      'Could not post to delete comment at this time. Please try later',
       { status: 500 }
     );
   }

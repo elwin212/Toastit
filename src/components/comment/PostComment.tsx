@@ -6,9 +6,9 @@ import { CommentRequest } from '@/lib/validators/comment';
 import { Comment, CommentVote, User } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { MessageSquare } from 'lucide-react';
+import { MessageSquare, Trash } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { FC, useRef, useState } from 'react';
+import { FC, startTransition, useRef, useState } from 'react';
 import CommentVotes from '../CommentVotes';
 import  UserAvatar  from '../UserAvatar';
 import { Button } from '../ui/Button';
@@ -16,6 +16,7 @@ import { Label } from '../ui/Label';
 import { Textarea } from '../ui/Textarea';
 import { toast } from '../../hooks/use-toast';
 import { useSession } from 'next-auth/react';
+import { DeleteCommentRequest } from '@/lib/validators/deleteComment';
 
 
 type ExtendedComment = Comment & {
@@ -64,6 +65,42 @@ const PostComment: FC<PostCommentProps> = ({comment, votesCnt, currentVote, post
     },
   });
 
+  const {mutate: deleteComment } = useMutation({
+    mutationFn: async () => {
+        const payload: DeleteCommentRequest = {
+            commentId: comment.id
+        };
+        await axios.patch("/api/subreddit/post/comment/delete", payload);            
+    },
+    onError: (err) => {  
+        console.log(err);
+        return toast({
+            title: "Something went wrong...123",
+            description: `Can't delete comment ${postId}`,
+            variant: "destructive",
+        });
+    },
+
+    onSuccess: () => {
+        startTransition(() => {
+            router.refresh();                                
+        });
+
+        toast({
+            title: 'Deleted!',
+            description: "The comment has been deleted.",
+        });
+    },
+});
+
+const handleDelete = () => {
+  // Show a confirmation message using window.alert
+  const confirmDelete = window.confirm('Are you sure you want to delete the comment?');
+  if (confirmDelete) {
+    deleteComment();
+  }
+};
+
 
 
   return (
@@ -76,13 +113,19 @@ const PostComment: FC<PostCommentProps> = ({comment, votesCnt, currentVote, post
           }}
           className='h-6 w-6'
         />
-        <div className='ml-2 flex items-center gap-x-2'>
+
+        <div className='ml-2 flex items-center flex-grow gap-x-2'>
           <p className='text-sm font-medium text-gray-900'>u/{comment.author.username}</p>
 
           <p className='max-h-40 truncate text-xs text-zinc-500'>
             {formatTimeToNow(new Date(comment.createdAt))}
-          </p>
+          </p>          
         </div>
+        {session?.user.id === comment.authorId ? 
+        <button className="btn btn-xs btn-primary" onClick={handleDelete}>
+        <Trash size={16} />
+        </button> : null}
+        
       </div>
 
       <p className='text-sm text-zinc-900 mt-2'>{comment.text}</p>
