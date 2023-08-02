@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar'
 import { cn } from '@/lib/utils'
 import { Inter } from 'next/font/google'
 import { Toaster } from '@/components/ui/Toaster'
+import { Analytics } from '@vercel/analytics/react';
 
 import '@/styles/globals.css'
 import Provider from '@/components/Provider'
@@ -42,6 +43,7 @@ export default function RootLayout({
           </AutoLogoutProvider>
           </Provider>
         <Toaster />
+        <Analytics />
       </body>
     </html>
   )
