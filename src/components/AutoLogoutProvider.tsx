@@ -26,7 +26,7 @@ type WindowActivityEvent = keyof WindowEventMap;
             callbackUrl: `${window.location.origin}/sign-in`,
           });
           window.alert('You have been signed out due to inactivity');
-        }, 15 * 60 * 1000); // 15 minutes (in milliseconds)
+        }, 15 * 60  * 1000); // 15 minutes (in milliseconds)
     
         setInactivityTimeout(newInactivityTimeout);                
     };
