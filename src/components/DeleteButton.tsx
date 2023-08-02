@@ -3,7 +3,7 @@ import { FC, startTransition, useState } from 'react'
 import { Button } from './ui/Button'
 import { useRouter } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 import { toast } from '@/hooks/use-toast';
 import { DeletePostRequest } from '@/lib/validators/deletePost'
 
@@ -13,8 +13,7 @@ interface DeleteButtonProps {
 }
 
 const DeleteButton: FC<DeleteButtonProps> = ({ postId } :DeleteButtonProps) => {
-    const router = useRouter();
-    const [showConfirmation, setShowConfirmation] = useState(false);
+    const router = useRouter();    
     const {mutate: deletePost } = useMutation({
         mutationFn: async () => {
 
@@ -26,7 +25,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ postId } :DeleteButtonProps) => {
         onError: (err) => {  
             console.log(err);
             return toast({
-                title: "Something went wrong...123",
+                title: "Something went wrong...",
                 description: `Cant delete post ${postId}`,
                 variant: "destructive",
             });

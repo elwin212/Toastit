@@ -1,6 +1,5 @@
 import { INFINITE_SCROLLING_PAGINATION_RESULT } from "@/config"
 import { db } from "@/lib/db"
-import { tr } from "date-fns/locale"
 import PostFeed from "./PostFeed";
 
 const GeneralFeed =async () => {

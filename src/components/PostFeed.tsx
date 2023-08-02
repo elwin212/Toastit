@@ -15,12 +15,6 @@ interface PostFeedProps {
   subredditName?: string
 }
 
-const loadIntersection = () => {
-  if (typeof window !== 'undefined') {
-    return require('@mantine/hooks').useIntersection;
-  }
-  return null;
-};
 
 const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
   const lastPostRef = useRef<HTMLElement>(null);  //DOM node element
@@ -30,14 +24,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
   });
 
   const { data: session } = useSession();
-  /*const useIntersection = loadIntersection();
-  const { ref, entry } = useIntersection
-    ? useIntersection({
-        root: lastPostRef.current,
-        threshold: 1,
-      })
-    : { ref: null, entry: null }; */
-  
+
 
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     ['infinite-query'],

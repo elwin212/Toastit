@@ -54,9 +54,8 @@ type WindowActivityEvent = keyof WindowEventMap;
                 });
     
             };
-        }
-                                        
-      }, [userSignedIn,inactivityTimeout]);
+        }                                        
+      }, [userSignedIn]);
   
     // Check if the user is logged in on mount
     

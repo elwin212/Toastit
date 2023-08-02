@@ -1,5 +1,4 @@
 import { getAuthSession } from '@/lib/auth';
-import { getToken } from 'next-auth/jwt';
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 
 const f = createUploadthing();

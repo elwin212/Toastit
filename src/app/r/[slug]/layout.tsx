@@ -1,12 +1,9 @@
-//import SubscribeLeaveToggle from '@/components/SubscribeLeaveToggle'
-//import ToFeedButton from '@/components/ToFeedButton'
 import SubscribeLeaveToggle from '@/components/SubscribeLeaveToggle'
 import { buttonVariants } from '@/components/ui/Button'
 import { getAuthSession } from '@/lib/auth'
 import ToFeedButton from '@/components/ToFeedButtom';
 import { db } from '@/lib/db'
 import { format } from 'date-fns'
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ReactNode } from 'react'

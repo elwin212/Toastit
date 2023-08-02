@@ -75,7 +75,7 @@ const PostComment: FC<PostCommentProps> = ({comment, votesCnt, currentVote, post
     onError: (err) => {  
         console.log(err);
         return toast({
-            title: "Something went wrong...123",
+            title: "Something went wrong...",
             description: `Can't delete comment ${postId}`,
             variant: "destructive",
         });

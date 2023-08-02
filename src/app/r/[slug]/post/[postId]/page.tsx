@@ -1,7 +1,7 @@
 
 import EditorOutput from '@/components/EditorOutput';
 import PostVoteServer from '@/components/post-vote/PostVoteServer';
-import { Button, buttonVariants } from '@/components/ui/Button';
+import { buttonVariants } from '@/components/ui/Button';
 import { db } from '@/lib/db';
 import { redis } from '@/lib/redis';
 import { formatTimeToNow } from '@/lib/utils';
@@ -13,7 +13,6 @@ import { Suspense } from 'react';
 import CommentSection from '@/components/CommentSection';
 import { getAuthSession } from '@/lib/auth';
 import DeleteButton from '@/components/DeleteButton';
-import Provider from '@/components/Provider';
 
 
 interface pageProps {
