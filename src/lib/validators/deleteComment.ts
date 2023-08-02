@@ -4,4 +4,5 @@ export const deleteCommentValidator = z.object({
     commentId: z.string(),  
 });
 
-export type DeleteCommetRequest = z.infer<typeof deleteCommentValidator>;
+
+export type DeleteCommentRequest = z.infer<typeof deleteCommentValidator>;
