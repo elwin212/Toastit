@@ -54,6 +54,11 @@ const Page = () => {
             })
           },
           onSuccess: (data) => {
+            toast({
+              title: 'Success!',
+              description: `You created ${input}!`,
+              variant: 'default',
+            });
             router.push(`/r/${data}`);
           },
     })
