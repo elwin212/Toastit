@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/Toaster'
 
 import '@/styles/globals.css'
 import Provider from '@/components/Provider'
+import AutoLogoutProvider from '@/components/AutoLogoutProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,14 +30,16 @@ export default function RootLayout({
       )}>
       <body className='min-h-screen pt-12 bg-slate-50 antialiased'>
         <Provider>
-          {/* @ts-expect-error server component */}
-          <Navbar />
+          <AutoLogoutProvider>
+            {/* @ts-expect-error server component */}
+            <Navbar />
 
-          {authModel}
+            {authModel}
 
-          <div className='container max-w-7xl mx-auto h-full pt-12'>
-            {children}
-          </div>
+            <div className='container max-w-7xl mx-auto h-full pt-12'>
+              {children}
+            </div>
+          </AutoLogoutProvider>
           </Provider>
         <Toaster />
       </body>
