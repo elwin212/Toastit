@@ -16,6 +16,11 @@ enum VoteType {
   DOWN
 }
 
+enum RoleType {
+  user
+  admin
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -51,15 +56,13 @@ model User {
   createdSubreddits Subreddit[]    @relation("CreatedBy")
   subscriptions     Subscription[]
   votes             Vote[]
-
-  username String? @unique
-
-  image       String?
-  accounts    Account[]
-  sessions    Session[]
-  Post        Post[]
-  Comment     Comment[]
-  CommentVote CommentVote[]
+  username          String?        @unique
+  image             String?
+  accounts          Account[]
+  sessions          Session[]
+  Post              Post[]
+  Comment           Comment[]
+  CommentVote       CommentVote[]
 }
 
 model Subreddit {

@@ -43,7 +43,7 @@ const page = async ({params} : PageProps) => {
         r/{subreddit.name}
     </h1>
     <MiniCreatePost session={session}/>
-    {subreddit.posts.length === 0 ? (<p>No posts in this group.</p>) : 
+    {subreddit.posts.length === 0 ? (<p>No posts in this group yet.</p>) : 
     <PostFeed initialPosts={subreddit.posts} subredditName={subreddit.name} />}
   </>
 }
