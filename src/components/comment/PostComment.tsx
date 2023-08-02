@@ -96,12 +96,10 @@ const PostComment: FC<PostCommentProps> = ({comment, votesCnt, currentVote, post
 const handleDelete = () => {
   // Show a confirmation message using window.alert
   const confirmDelete = window.confirm('Are you sure you want to delete the comment?');
-  if (confirmDelete) {
-    deleteComment();
-  }
-};
-
-
+    if (confirmDelete) {
+      deleteComment();
+    }
+  };
 
   return (
     <div ref={commentRef} className='flex flex-col'>
