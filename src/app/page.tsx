@@ -14,8 +14,8 @@ export default async function Home() {
 
 
   return (
-    <>
-    <h1 className="font-bold text-3xl md:text-4xl">See what&apos;s everyone saying</h1>
+    <>    
+    <h1 className="font-bold text-3xl md:text-4xl">See what&apos;s everyone saying</h1>          
     <div className="grid grid-cols-1 md:grid-col-3 gap-y-4 md:gap-x-4 py-6">
       {/* feed */}
       {/* @ts-expect-error server component */}
@@ -39,12 +39,28 @@ export default async function Home() {
             </p>
                                     
           </div>
-          <Link className={buttonVariants({
-            className: "w-full mt-4 mb-6"
-          })} href="/r/create">Create Groups</Link>
-        </div>
-      </div>
-
+          <div className="flex justify-between gap-x-4">
+              <Link 
+                  className={buttonVariants({
+                      className: "mt-4 mb-6"
+                  })}
+                  href="/groupslist"
+                  style={{ width: '50%' }}
+              >
+                  Groups List
+              </Link>
+              <Link 
+                  className={buttonVariants({
+                      className: "mt-4 mb-6"
+                  })}
+                  href="/r/create"
+                  style={{ width: '50%' }}
+              >
+                  Create Groups
+              </Link>
+          </div>
+        </div>        
+      </div>      
     </div>
     </>
   )
