@@ -52,18 +52,18 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
   }, [entry, fetchNextPage]);
 
   
-  const posts = data?.pages.flatMap((page) => page) ?? initialPosts;  // ?? -> if the condition is null or undefined then run initialPosts
+  const posts = data?.pages.flatMap((page) => page) ?? initialPosts;  // ?? -> if the condition is null or undefined then run initialPosts  
 
   return (
     <ul className='flex flex-col col-span-1 space-y-6'>
       {posts.map((post, index) => {
+        
         const votesAmt = post.votes.reduce((acc, vote) => {
-          if (vote.type === 'UP') return acc++;
-          if (vote.type === 'DOWN') return acc--;
+          if (vote.type === 'UP') return acc+1;
+          if (vote.type === 'DOWN') return acc-1;
           return acc;
         }, 0);
-
-
+                
         const currentVote = post.votes.find(
           (vote) => vote.userId === session?.user.id
         );
@@ -71,19 +71,20 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
         const isLastPost = index === posts.length - 1;
 
         if (isLastPost) {  //reach the last post in the page
-          // Add a ref to the last post in the list
-          return (
+          // Add a ref to the last post in the list                    
+          return (            
             <li key={post.id} ref={ref}>
               <Post
                 post={post}
                 commentAmt={post.comments.length}
-                subredditName={post.subreddit.name}
+                subredditName={post.subreddit.name}                
                 votesAmt={votesAmt}
                 currentVote={currentVote}
               />
             </li>
           )
         } else {
+          console.log(votesAmt);
           return (
             <Post
               key={post.id}
