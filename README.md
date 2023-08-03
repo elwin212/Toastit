@@ -17,7 +17,7 @@ Toastit is a modern web application that closely resembles Reddit, providing use
 - 📝 **Content Creation**: Users can easily create and share their content within specific interest groups also they can comment on a post or delete the post.
 - 👍 **Upvoting System**: The application incorporates an upvoting system, allowing users to show their appreciation for posts and content they find valuable.
 - 🗃️ **AWS RDS Data Storage**: AWS RDS (Relational Database Service) is employed as the primary data storage solution, ensuring scalability, security, and reliability.
-- 💾 **Prisma ORM: Incorporate** Prisma for streamlined database management, improved query safety, and increased developer productivity, allowing efficient and secure operations.
+- 💾 **Prisma ORM**: Incorporate Prisma for streamlined database management, improved query safety, and increased developer productivity, allowing efficient and secure operations.
 - 🚀 **Caching with Upstash**: Upstash is utilized for caching purposes, optimizing the performance of the application and reducing response times.
 - 🔐 **Google Account Authentication**: User authentication is seamlessly integrated with Google accounts, making the login process secure and user-friendly.
 
