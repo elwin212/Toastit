@@ -21,7 +21,7 @@ const Page = () => {
             const payload: CreateSubredditPayload = {
                 name: input,
             }
-            const {data} = await axios.post("/api/subreddit", payload);
+            const {data} = await axios.post("/api/subreddit/create", payload);
             return data as String;
         },
         onError: (err) => {
