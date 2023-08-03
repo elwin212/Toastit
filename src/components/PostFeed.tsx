@@ -83,8 +83,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
               />
             </li>
           )
-        } else {
-          console.log(votesAmt);
+        } else {          
           return (
             <Post
               key={post.id}
