@@ -55,7 +55,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;  // ?? -> if the condition is null or undefined then run initialPosts
 
   return (
-    <ul className='flex flex-col col-span-2 space-y-6'>
+    <ul className='flex flex-col col-span-1 space-y-6'>
       {posts.map((post, index) => {
         const votesAmt = post.votes.reduce((acc, vote) => {
           if (vote.type === 'UP') return acc++;
