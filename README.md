@@ -3,7 +3,7 @@
 ![Toastit Logo](/public/toastit192.png)
 
 Toastit is a modern web application that closely resembles Reddit, providing users with a platform to create, post, and upvote content across various interest groups.<br> The application is built using cutting-edge technologies, including Next.js, Typescript, AWS RDS, Prisma, and Cache storage for optimal performance and user experience.<br>
-**Please note:** Many features are still in progress and the application is actively being developed.
+**Please note:** Many features are still in progress and the application is actively being developed if you found a bug, please open an issue.
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ Toastit is a modern web application that closely resembles Reddit, providing use
 
 ## Features
 
-- 📝 **Content Creation**: Users can easily create and share their content within specific interest groups also they can comment on a post.
+- 📝 **Content Creation**: Users can easily create and share their content within specific interest groups also they can comment on a post or delete the post.
 - 👍 **Upvoting System**: The application incorporates an upvoting system, allowing users to show their appreciation for posts and content they find valuable.
 - 🗃️ **AWS RDS Data Storage**: AWS RDS (Relational Database Service) is employed as the primary data storage solution, ensuring scalability, security, and reliability.
 - 🚀 **Caching with Upstash**: Upstash is utilized for caching purposes, optimizing the performance of the application and reducing response times.
@@ -30,7 +30,7 @@ You can find a live demo of the application [here](https://toastit-dusky.vercel.
 - Backend: Node.js, Express.js
 - Language: TypeScript
 - Database: AWS RDS with PostgreSQL
-- Cache: upstash
+- Cache: Redis
 
 ## Development Setup
 
