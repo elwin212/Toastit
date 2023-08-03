@@ -23,12 +23,12 @@ export default async function Home() {
 
       {/* subscription */}
       <div className="overflow-hidden h-fit rounded-lg border border-gray-200 order-first md_order-last">
-        <div className="bg-emerald-100 px-6 py-4">
+        <div className="bg-emerald-100 px-6 py-4 flex justify-between items-center">
           <p className="font-semibold py-3 flex items-center gap-1.5">
             <HomeIcon className="w-4 h-4"/>
             Home
           </p>
-
+          <p className="font-semibold text-zinc-500">This website is still in progress, stay tuned!</p>
         </div>
 
         <div className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
