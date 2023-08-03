@@ -8,7 +8,9 @@ export const SubredditSubscriptionValidator = z.object({
     subredditId: z.string()
 });
 
-export type CreateSubredditPayload = z.infer<typeof SubredditValidator>
-export type SubscribeToSubredditPayload = z.infer<
-  typeof SubredditSubscriptionValidator
->
+export const SubredditSearchValidator = z.object({
+
+});
+
+export type CreateSubredditPayload = z.infer<typeof SubredditValidator>;
+export type SubscribeToSubredditPayload = z.infer<typeof SubredditSubscriptionValidator>;
