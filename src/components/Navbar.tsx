@@ -8,7 +8,7 @@ import Image from 'next/image'
 const Navbar = async () => {
     const session = await getAuthSession();
 
-    return <div className="fixed top-0 inset-x-0 h-fit bg-zinc-100 border-zinc-300 z-[10] py-2">
+    return <div className="fixed top-0 inset-x-0 h-fit bg-zinc-100  border-zinc-300 z-[10] py-2">
         <div className="container max-w-7xl h-full mx-auto flex items-center justify-between pag-2">
             <Link href='/' className= "flex gap-2 item-center">            
                     <Image
@@ -18,7 +18,7 @@ const Navbar = async () => {
                         height={50}
                         className="h-8 w-8 sm:h-6 sm:w-6" // Apply any additional CSS classes you need
                     />
-                <p className="hidden text-zinc-700 text-sm font-medium md:block">Toastit</p>
+                <p className="hidden text-zinc-700 text-md font-medium md:block">Toastit</p>
             </Link>
             {/* serach bar */}
             <SearchBar />

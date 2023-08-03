@@ -7,6 +7,7 @@ import { Analytics } from '@vercel/analytics/react';
 import '@/styles/globals.css'
 import Provider from '@/components/Provider'
 import AutoLogoutProvider from '@/components/AutoLogoutProvider'
+import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,7 +30,7 @@ export default function RootLayout({
         'bg-white text-slate-900 antialiased light',
         inter.className
       )}>
-      <body className='min-h-screen pt-12 bg-slate-50 antialiased'>
+      <body className='min-h-screen pt-12 bg-slate-50 antialiased flex flex-col'>
         <Provider>
           <AutoLogoutProvider>
             {/* @ts-expect-error server component */}
@@ -37,12 +38,13 @@ export default function RootLayout({
 
             {authModel}
 
-            <div className='container max-w-7xl mx-auto h-full pt-12'>
+            <div className='container max-w-7xl mx-auto h-full pt-12 flex-grow'>
               {children}
             </div>
           </AutoLogoutProvider>
           </Provider>
-        <Toaster />
+          <Footer />
+        <Toaster />        
         <Analytics />
       </body>
     </html>
