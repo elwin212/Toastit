@@ -72,8 +72,19 @@ export const CustomEditor: React.FC<CustomEditorProps> = ({ subredditId }) => {
         },
       });
 
+    async function uploadImageFile(file:File) {
+      const [res] = await uploadFiles({
+        endpoint: 'imageUploader',
+        files: [file],
+      });
+      return {
+        success: 1,
+        file: {
+          url: res.fileUrl,
+        },
+      };
+    }                
       
-        
     const initEditor = useCallback(async () => {
         const EditorJS = (await import('@editorjs/editorjs')).default;
         const Header = (await import('@editorjs/header')).default;
@@ -105,20 +116,12 @@ export const CustomEditor: React.FC<CustomEditorProps> = ({ subredditId }) => {
                 image: {
                     class: ImageTool,
                     config: {
-                        uploader: {  //using uploadthing.com for storage, if app scale quickly, use AWS S3 instead.                            
-                            async upLoadByFile(file: File) {                                 
-                                const [res] = await uploadFiles({                                                                    
-                                  endpoint: "imageUploader",
-                                  files: [file],
-                                });
-                                return {
-                                    success: 1,
-                                    file: {
-                                        url: res.fileUrl,                                        
-                                    },
-                                };
-                            },
-                        },
+                      uploader: {
+                        uploadByFile(file: File) 
+                        {
+                          return uploadImageFile(file);
+                        }
+                      },                        
                     },
                 },
                 list: List,
