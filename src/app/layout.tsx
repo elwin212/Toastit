@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Toastit',
-  description: 'Simple website built with Next.js and Typescript',
+  description: 'Simple content sharing platform',
 }
 
 export default function RootLayout({
