@@ -11,6 +11,8 @@ import { toast } from '../../hooks/use-toast';
 import { Button } from '../ui/Button';
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useSession } from 'next-auth/react';
+import debounce from 'lodash.debounce';
 
 interface PostVoteClientProps {
   postId: string
@@ -27,6 +29,7 @@ const PostVoteClient = ({
   const [votesAmt, setVotesAmt] = useState<number>(initialVotesAmt)
   const [currentVote, setCurrentVote] = useState(initialVote)
   const prevVote = usePrevious(currentVote)
+  const session = useSession();
 
   // ensure sync with server
   useEffect(() => {
@@ -77,11 +80,27 @@ const PostVoteClient = ({
     },
   });
 
+  const handleVoteClickUp = debounce(() => {
+    if (session.status === 'authenticated') {      
+      vote('UP');
+    } else {    
+      loginToast();
+    }
+  }, 200);
+
+  const handleVoteClickDown = debounce(() => {
+    if (session.status === 'authenticated') {      
+      vote('DOWN');
+    } else {      
+      loginToast();
+    }
+  }, 200);
+
   return (
     <div className='flex flex-col gap-4 sm:gap-0 pr-6 sm:w-20 pb-4 sm:pb-0'>
       {/* upvote */}
-      <Button
-        onClick={() => vote('UP')}
+      <Button        
+        onClick={handleVoteClickUp}
         size='sm'
         variant='ghost'
         aria-label='upvote'>
@@ -98,8 +117,8 @@ const PostVoteClient = ({
       </p>
 
       {/* downvote */}
-      <Button
-        onClick={() => vote('DOWN')}
+      <Button        
+        onClick={handleVoteClickDown}
         size='sm'
         className={cn({
           'text-emerald-500': currentVote === 'DOWN',

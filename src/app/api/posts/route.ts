@@ -8,7 +8,7 @@ export async function GET(req: Request) {
   const session = await getAuthSession();
 
   let followedCommunitiesIds: string[] = [];
-
+  
   //if logged in
   if (session) {
     const followedCommunities = await db.subscription.findMany({
@@ -19,7 +19,7 @@ export async function GET(req: Request) {
         subreddit: true,
       },
     })
-
+    
     followedCommunitiesIds = followedCommunities.map((sub) => sub.subreddit.id);
   }
 

@@ -56,13 +56,14 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
 
   return (
     <ul className='flex flex-col col-span-1 space-y-6'>
-      {posts.map((post, index) => {
-        
-        const votesAmt = post.votes.reduce((acc, vote) => {
-          if (vote.type === 'UP') return acc+1;
-          if (vote.type === 'DOWN') return acc-1;
+      {posts.map((post, index) => {        
+        /*const votesAmt = post.votes.reduce((acc, vote) => {
+          if(session?.user){
+            if (vote.type === 'UP') return acc+1;
+            if (vote.type === 'DOWN') return acc-1;
+          }          
           return acc;
-        }, 0);
+        }, 0);*/
                 
         const currentVote = post.votes.find(
           (vote) => vote.userId === session?.user.id
@@ -78,7 +79,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
                 post={post}
                 commentAmt={post.comments.length}
                 subredditName={post.subreddit.name}                
-                votesAmt={votesAmt}
+                votesAmt={post.votes.length}
                 currentVote={currentVote}
               />
             </li>
@@ -90,7 +91,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
               post={post}
               commentAmt={post.comments.length}
               subredditName={post.subreddit.name}
-              votesAmt={votesAmt}
+              votesAmt={post.votes.length}
               currentVote={currentVote}
             />
           );
