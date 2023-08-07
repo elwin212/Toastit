@@ -1,6 +1,5 @@
 import ToFeedButton from "@/components/ToFeedButtom";
 import { db } from "@/lib/db";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,7 +15,7 @@ const Page = async () => {
         },
         take: 50,
     });
-    
+        
     return (       
         <>
         <div><ToFeedButton /></div>

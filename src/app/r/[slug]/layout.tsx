@@ -1,5 +1,5 @@
 import SubscribeLeaveToggle from '@/components/SubscribeLeaveToggle'
-import { buttonVariants } from '@/components/ui/Button'
+import { Button, buttonVariants } from '@/components/ui/Button'
 import { getAuthSession } from '@/lib/auth'
 import ToFeedButton from '@/components/ToFeedButtom';
 import { db } from '@/lib/db'
@@ -105,6 +105,13 @@ const Layout = async ({
                 href={`r/${slug}/submit`}>
                 Create Post
               </Link>
+              {session?.user?.id === subreddit.creatorId ? <Button className={buttonVariants({
+                variant: "destructive",
+                className: "w-full mb-6",
+              })}>
+                Delete Group
+              </Button> : null}
+              
             </dl>
           </div>
         </div>
