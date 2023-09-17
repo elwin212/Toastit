@@ -1,5 +1,3 @@
-import { redirect } from 'next/navigation'
-import { authOptions, getAuthSession } from '@/lib/auth'
 
 export const metadata = {
   title: 'Profile',
